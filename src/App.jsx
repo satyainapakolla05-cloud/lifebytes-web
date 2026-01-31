@@ -1,26 +1,30 @@
-import { BrowserRouter, Routes, Route,Outlet  } from "react-router-dom";
-import Home from "./pages/Home";
-import Blogs from "./pages/Blogs";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import About from "./pages/About";
+import Home from "./pages/Home";
+import Blogs from "./pages/Blogs";
 import BlogDetail from "./pages/BlogDetail";
+import About from "./pages/About";
 
 export default function App() {
   return (
     <BrowserRouter>
-    
-    <Navbar /> {/* 👈 ADD HERE */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blogs/:id" element={<BlogDetail />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-      <main className="min-h-screen">
-  <Outlet />
-</main>
-       <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blogs" element={<Blogs />} />
+            {/* ఇక్కడ పాత్ ని జాగ్రత్తగా గమనించండి */}
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

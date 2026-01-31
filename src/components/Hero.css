@@ -1,66 +1,87 @@
-.hero {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f9fafb, #ffffff);
-}
-
-.hero-content {
-  max-width: 800px;
-  text-align: center;
+.main-wrapper {
+  background-color: #fcfcfc;
+  min-height: 100vh;
   padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.hero-content h1 {
-  font-size: 56px;
+.hero-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* హెడ్డింగ్ ని ఒకే లైన్ లోకి తెచ్చి స్టైలిష్ గా మార్చడం */
+.hero-header h1 {
+  font-size: 3.5rem;
   font-weight: 800;
-  color: #111;
-  line-height: 1.2;
+  color: #1a1a1a;
+  letter-spacing: -1px;
+}
+
+.hero-header h1 span {
+  color: #2563eb; /* Blue highlight */
+}
+
+.hero-header p {
+  color: #666;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* బ్లాగ్ కార్డ్ డిజైన్ - Rich Look */
+.blog-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blog-card {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft Shadow */
+  overflow: hidden;
+  transition: 0.3s;
+  border: 1px solid #eee;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.blog-image-section {
+  flex: 0 0 35%; /* ఇమేజ్ విడ్త్ */
+}
+
+.blog-image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-content-section {
+  padding: 30px;
+  flex: 1;
+}
+
+.blog-content-section h2 {
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+}
+
+.blog-content-section p {
+  color: #555;
+  line-height: 1.6;
   margin-bottom: 20px;
 }
 
-.hero-content h1 span {
+.read-btn {
+  background: none;
+  border: none;
   color: #2563eb;
-}
-
-.hero-content p {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 14px 28px;
-  font-size: 16px;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.btn.primary {
-  background: #2563eb;
-  color: #fff;
-}
-
-.btn.primary:hover {
-  background: #1d4ed8;
-}
-
-.btn.secondary {
-  border: 2px solid #2563eb;
-  color: #2563eb;
-}
-
-.btn.secondary:hover {
-  background: #2563eb;
-  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
 }
