@@ -18,17 +18,21 @@ const BlogDetail = () => {
       .then(res => {
         setBlog(res.data);
        const count = res.data.likes !== undefined ? res.data.likes : res.data.Likes;
-            setLikeCount(count || 0);// Backend నుండి వచ్చే లైక్స్
+       setLikeCount(count || 0);// Backend నుండి వచ్చే లైక్స్
+       const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+            if (likedPosts[id]) {
+                setIsLiked(true);
+            }
       })
       .catch(err => console.log(err));
   }, [id]);
 
   // WhatsApp Share Function
-  const shareOnWhatsApp = () => {
-    const url = window.location.href;
-    const message = `Check out this blog: ${blog.title} - ${url}`;
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
-  };
+ const shareOnWhatsApp = () => {
+  const url = window.location.href; // ఇది https://lyfbites.com/blog/1 ని తీసుకుంటుంది
+  const message = `Check out this blog: ${blog?.title} - ${url}`;
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+};
 
  const handleLike = async () => {
     try {
@@ -41,19 +45,21 @@ const BlogDetail = () => {
         
         if (res.data && res.data.likes !== undefined) {
             setLikeCount(res.data.likes); // Backend nundi vacchina updated count
-            setIsLiked(nextAction); // Heart color change avvadaniki state toggle
+            setIsLiked(nextAction);
+            
+            const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+            if (nextAction) {
+                likedPosts[id] = true;
+            } else {
+                delete likedPosts[id];
+            }
+            localStorage.setItem('likedPosts', JSON.stringify(likedPosts));// Heart color change avvadaniki state toggle
         }
     } catch (err) {
         console.error("Like error:", err);
     }
 };
 
-  const addComment = () => {
-    if (commentInput.trim()) {
-      setComments([...comments, commentInput]);
-      setCommentInput("");
-    }
-  };
 
   if (!blog) return <div className="p-20 text-center">Loading Story...</div>;
 
@@ -99,18 +105,7 @@ const BlogDetail = () => {
   </span>
 </button>
 
- {/* Comment Icon - దీని మీద క్లిక్ చేస్తే ఓపెన్ అవుతుంది */}
-      <button 
-        onClick={() => {
-          console.log("Comment button clicked!"); // ఇది చెక్ చేయడానికి
-          setShowCommentInput(!showCommentInput);
-        }} 
-        className={`flex items-center gap-2 transition-colors ${showCommentInput ? "text-blue-600" : "text-gray-700"}`}
-      >
-        <MessageCircle size={24} />
-        <span className="font-semibold">{comments?.length || 0}</span>
-      </button>
-
+ 
   {/* WhatsApp Share Button */}
   <button 
     onClick={shareOnWhatsApp} 
@@ -120,38 +115,6 @@ const BlogDetail = () => {
     <span className="font-semibold">Share</span>
   </button>
 </div>
-
-{/* --- Toggle అయ్యే కామెంట్ బాక్స్ --- */}
-     {showCommentInput && (
-      <div className="mt-4 p-4 bg-gray-50 rounded-2xl flex items-center gap-3 animate-in fade-in duration-300">
-        <input 
-          type="text" 
-          autoFocus 
-          value={commentInput}
-          onChange={(e) => setCommentInput(e.target.value)}
-          placeholder="Write a comment..."
-          className="flex-1 bg-white border border-gray-200 rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <button 
-          onClick={addComment}
-          className="text-blue-600 font-bold px-3"
-        >
-          Post
-        </button>
-      </div>
-    )}
-    {/* --- కామెంట్ల లిస్ట్ --- */}
-    <div className="mt-6 space-y-3 px-2">
-      {comments && comments.length > 0 ? (
-        comments.map((c, i) => (
-          <div key={i} className="text-gray-700 bg-gray-50 p-4 rounded-2xl border border-gray-100 shadow-sm">
-            {c}
-          </div>
-        ))
-      ) : (
-        showCommentInput && <p className="text-gray-400 text-sm ml-4">No comments yet. Be the first!</p>
-      )}
-    </div>
     </div>
   );
 };
