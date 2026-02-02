@@ -1,50 +1,124 @@
+/* Navbar Container */
 .navbar {
-  background: #ffffff;
-  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.nav-container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 16px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #2563eb;
+  text-decoration: none;
+  letter-spacing: -1px;
 }
 
-.logo a {
-  font-size: 22px;
+.logo span {
+  color: #111827;
+}
+
+/* Right Side Wrapper */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Home Link */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #374151;
   font-weight: 700;
   text-decoration: none;
-  color: #111;
+  transition: color 0.3s;
 }
 
-.nav-links a {
-  margin-left: 24px;
-  text-decoration: none;
-  font-size: 16px;
-  color: #444;
+.nav-link:hover {
+  color: #2563eb;
+}
+
+/* Language Dropdown Button */
+.lang-dropdown {
   position: relative;
 }
 
-.nav-links a:hover {
-  color: #000;
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f9fafb;
+  border: 1px solid #f3f4f6;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #374151;
+  transition: all 0.3s ease;
 }
 
-.nav-links a::after {
-  content: "";
+.lang-btn:hover {
+  background-color: #f3f4f6;
+}
+
+/* Dropdown Menu Box */
+.dropdown-menu {
   position: absolute;
-  width: 0%;
-  height: 2px;
-  background: #000;
-  left: 0;
-  bottom: -4px;
-  transition: width 0.3s ease;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 160px;
+  background-color: white;
+  border: 1px solid #f3f4f6;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  animation: slideDown 0.2s ease-out;
 }
 
-.nav-links a:hover::after {
+.dropdown-item {
   width: 100%;
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: none;
+  font-weight: 700;
+  color: #1f2937;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.border-b {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Animation */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  .nav-link span {
+    display: none; /* Mobile lo kevalam Home icon matrame kanipistundi */
+  }
+  .nav-right {
+    gap: 1rem;
+  }
 }
