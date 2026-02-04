@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Languages, ChevronDown, Home } from 'lucide-react';
 
-const Navbar = () => {
-  const [lang, setLang] = useState('Telugu');
-  const [isOpen, setIsOpen] = useState(false);
+
+const Navbar = ({ onLanguageChange }) => {
+   const [isOpen, setIsOpen] = useState(false);
+  const [selectedLang, setSelectedLang] = useState('తెలుగు');
+ 
+
+  const handleLangChange = (lang) => {
+    setSelectedLang(lang);
+    onLanguageChange(lang); // Parent component కి సమాచారం పంపుతుంది
+    setIsOpen(false);
+  };
 
   return (
+
+
     <nav className="flex justify-between items-center px-4 md:px-10 py-4 bg-white shadow-sm sticky top-0 z-50">
       
       {/* Logo Section */}
@@ -25,7 +35,6 @@ const Navbar = () => {
           <Home size={20} />
           <span className="hidden md:inline">Home</span>
         </Link>
-
         {/* Language Dropdown */}
         <div className="relative">
           <button 
@@ -33,7 +42,7 @@ const Navbar = () => {
             className="flex items-center space-x-2 bg-gray-50 border border-gray-100 px-3 py-2 rounded-xl hover:bg-gray-100 transition-all font-bold text-gray-700 text-sm md:text-base"
           >
             <Languages size={18} className="text-blue-600" />
-            <span>{lang}</span>
+            <span>{selectedLang === 'తెలుగు' ? 'తెలుగు' : 'English'}</span>
             <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
           </button>
 
@@ -41,13 +50,13 @@ const Navbar = () => {
           {isOpen && (
             <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-100 rounded-2xl shadow-2xl z-[100] overflow-hidden animate-in fade-in zoom-in duration-200">
               <button 
-                onClick={() => { setLang('Telugu'); setIsOpen(false); }}
+                onClick={() => { handleLangChange('తెలుగు'); setIsOpen(false); }}
                 className="w-full text-left px-5 py-3 hover:bg-blue-50 transition-colors border-b border-gray-50 font-bold text-gray-800"
               >
                 తెలుగు
               </button>
               <button 
-                onClick={() => { setLang('English'); setIsOpen(false); }}
+                onClick={() => { handleLangChange('English'); setIsOpen(false); }}
                 className="w-full text-left px-5 py-3 hover:bg-blue-50 transition-colors font-bold text-gray-800"
               >
                 English
