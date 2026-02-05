@@ -65,7 +65,7 @@ const BlogDetail = ({ lang }) => {
    <div className="max-w-4xl mx-auto p-6 md:p-12 bg-white min-h-screen">
       <Link to="/" className="text-blue-500 font-semibold mb-6 inline-block">Back to Home</Link>
       <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-        {lang === 'తెలుగు' ? blog.titleTelugu : blog.titleEnglish}
+        {lang === 'తెలుగు' ? blog.titletelugu : blog.titleenglish}
       </h1>
       {/* Action Buttons: Like & Share */}
       <img 
@@ -78,7 +78,7 @@ const BlogDetail = ({ lang }) => {
         className="text-gray-800 text-xl leading-relaxed space-y-6"
         style={{ whiteSpace: 'pre-line', fontFamily: 'serif' }}
       >
-        {lang === 'తెలుగు' ? blog.contentTelugu : blog.contentEnglish}
+        {lang === 'తెలుగు' ? blog.contenttelugu : blog.contentenglish}
       </div>
 
       {/* --- Action Bar: Like, Comment Count, Share --- */}
