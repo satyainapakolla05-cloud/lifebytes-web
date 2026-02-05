@@ -3,16 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Heart, ThumbsUp, Share2, MessageCircle } from 'lucide-react';
 
-const BlogDetail = () => {
+const BlogDetail = ({ lang }) => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0); // Like count state
-  const [comments, setComments] = useState([]); // Comments list
-  const [commentInput, setCommentInput] = useState("");
-  const [showCommentInput, setShowCommentInput] = useState(false);
 
   useEffect(() => {
+    {console.log("Blog ID:", id);}
     // ఇక్కడ మీ పోర్ట్ 44351 అని కన్ఫర్మ్ చేసుకోండి
     axios.get(import.meta.env.VITE_API_BASE_URL+`/posts/${id}`)
       .then(res => {
@@ -66,14 +64,12 @@ const BlogDetail = () => {
   return (
    <div className="max-w-4xl mx-auto p-6 md:p-12 bg-white min-h-screen">
       <Link to="/" className="text-blue-500 font-semibold mb-6 inline-block">Back to Home</Link>
-      
       <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-        {blog.title}
+        {lang === 'తెలుగు' ? blog.titleTelugu : blog.titleEnglish}
       </h1>
-
       {/* Action Buttons: Like & Share */}
       <img 
-        src={blog.img || "/images/p2s.png"} 
+        src={blog.imageUrl}
         alt={blog.title}
         className="w-full h-auto rounded-3xl shadow-2xl mb-10 object-cover max-h-[300px]"
       />
@@ -82,7 +78,7 @@ const BlogDetail = () => {
         className="text-gray-800 text-xl leading-relaxed space-y-6"
         style={{ whiteSpace: 'pre-line', fontFamily: 'serif' }}
       >
-        {blog.content}
+        {lang === 'తెలుగు' ? blog.contentTelugu : blog.contentEnglish}
       </div>
 
       {/* --- Action Bar: Like, Comment Count, Share --- */}

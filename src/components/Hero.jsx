@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Hero.css';
 import { Link } from 'react-router-dom';
 
-const Hero = () => {
+const Hero = ({ lang }) => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,13 +43,14 @@ const Hero = () => {
 
            <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 leading-tight">
-               {blog.title}
+               { lang === 'తెలుగు' ? blog.titleTelugu : blog.titleEnglish}
                </h2>
                <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6 line-clamp-3">
-                {blog.slug ? blog.slug.substring(0, 150) + "..." : "No content available."}...
+                {lang === 'తెలుగు' ?  blog.contentTelugu.substring(0,20) + "..." : blog.contentEnglish.substring(0,20)+ "..."}
+               
                 </p>
                <Link to={`/blog/${blog.id}`} className="text-blue-600 font-bold flex items-center gap-2 hover:gap-4 transition-all">
-                Read Full Story →<span className="text-xl">→</span>
+                Read Full Story →<span className="text-xl"></span>
                </Link>
             </div>
              </div>
