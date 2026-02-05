@@ -43,10 +43,10 @@ const Hero = ({ lang }) => {
 
            <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-3 leading-tight">
-               { lang === 'తెలుగు' ? blog.titleTelugu : blog.titleEnglish}
+               { lang === 'తెలుగు' ? blog.titletelugu : blog.titleenglish}
                </h2>
                <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6 line-clamp-3">
-                {lang === 'తెలుగు' ?  blog.contentTelugu.substring(0,20) + "..." : blog.contentEnglish.substring(0,20)+ "..."}
+                {lang === 'తెలుగు' ?  blog.contenttelugu.substring(0,20) + "..." : blog.contentenglish.substring(0,20)+ "..."}
                
                 </p>
                <Link to={`/blog/${blog.id}`} className="text-blue-600 font-bold flex items-center gap-2 hover:gap-4 transition-all">
