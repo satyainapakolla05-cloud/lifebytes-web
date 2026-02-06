@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Heart, ThumbsUp, Share2, MessageCircle } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 const BlogDetail = ({ lang }) => {
   const { id } = useParams();
@@ -75,11 +76,13 @@ const BlogDetail = ({ lang }) => {
       />
 
       <div 
-        className="text-gray-800 text-xl leading-relaxed space-y-6"
-        style={{ whiteSpace: 'pre-line', fontFamily: 'serif' }}
-      >
-        {lang === 'తెలుగు' ? blog.contenttelugu : blog.contentenglish}
-      </div>
+  className="text-gray-800 text-xl leading-relaxed space-y-6 blog-container"
+  style={{ fontFamily: 'serif' }}
+>
+  <ReactMarkdown>
+    {lang === 'తెలుగు' ? blog.contenttelugu : blog.contentenglish}
+  </ReactMarkdown>
+</div>
 
       {/* --- Action Bar: Like, Comment Count, Share --- */}
 <div className="flex items-center gap-8 py-6 mt-8 border-y border-gray-100">

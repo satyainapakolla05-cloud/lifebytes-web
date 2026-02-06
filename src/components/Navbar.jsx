@@ -23,7 +23,20 @@ const Navbar = ({ onLanguageChange }) => {
       <Link to="/" className="text-2xl font-black text-blue-600 tracking-tighter">
         Life<span className="text-gray-900">Bites</span>
       </Link>
-
+      {/* వెండర్ లాగిన్ బటన్ (కొత్తది) */}
+  <Link 
+    to="/vendor-login" 
+    className="text-green-600 border border-green-600 px-4 py-2 rounded-md font-medium hover:bg-green-50 transition"
+  >
+    Vendor Login
+  </Link>
+{/* వెండర్ రిజిస్ట్రేషన్ లింక్ ఇక్కడ యాడ్ చేయండి */}
+  <Link 
+    to="/vendor-register" 
+    className="bg-green-600 text-white px-4 py-2 rounded-md font-medium hover:bg-green-700 transition"
+  >
+    Become a Vendor
+  </Link>
       {/* Right Side Options */}
       <div className="flex items-center space-x-4 md:space-x-8">
         

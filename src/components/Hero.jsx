@@ -46,8 +46,7 @@ const Hero = ({ lang }) => {
                { lang === 'తెలుగు' ? blog.titletelugu : blog.titleenglish}
                </h2>
                <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6 line-clamp-3">
-                {lang === 'తెలుగు' ?  blog.contenttelugu.substring(0,20) + "..." : blog.contentenglish.substring(0,20)+ "..."}
-               
+                {lang === 'తెలుగు' ?  blog.contenttelugu.substring(0, 47) + "..." : blog.contentenglish.substring(0, 47) + "..."}
                 </p>
                <Link to={`/blog/${blog.id}`} className="text-blue-600 font-bold flex items-center gap-2 hover:gap-4 transition-all">
                 Read Full Story →<span className="text-xl"></span>

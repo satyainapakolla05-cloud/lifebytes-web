@@ -7,6 +7,9 @@ import Blogs from "./pages/Blogs";
 import Hero from './components/Hero';
 import BlogDetail from "./pages/BlogDetail";
 import About from "./pages/About";
+import VendorRegistration from "./pages/VendorRegistration";
+import VendorLogin from "./pages/VendorLogin";
+import VendorDashboard from "./pages/VendorDashboard";
 
 export default function App() {
   const [lang, setCurrentLang] = useState('తెలుగు');
@@ -22,6 +25,9 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Hero lang={lang} />} />
            <Route path="/blog/:id" element={<BlogDetail lang={lang} />} />
+           <Route path="/vendor-register" element={<VendorRegistration />} />
+           <Route path="/vendor-login" element={<VendorLogin />} />
+           <Route path="/vendor-dashboard" element={<VendorDashboard />} />
           </Routes>
         </main>
         <Footer />
