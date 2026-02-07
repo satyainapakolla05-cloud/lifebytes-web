@@ -10,6 +10,7 @@ import About from "./pages/About";
 import VendorRegistration from "./pages/VendorRegistration";
 import VendorLogin from "./pages/VendorLogin";
 import VendorDashboard from "./pages/VendorDashboard";
+import VendorStore from "./pages/VendorStore";
 
 export default function App() {
   const [lang, setCurrentLang] = useState('తెలుగు');
@@ -28,6 +29,7 @@ export default function App() {
            <Route path="/vendor-register" element={<VendorRegistration />} />
            <Route path="/vendor-login" element={<VendorLogin />} />
            <Route path="/vendor-dashboard" element={<VendorDashboard />} />
+           <Route path="/vendor-store/:id" element={<VendorStore />} />
           </Routes>
         </main>
         <Footer />

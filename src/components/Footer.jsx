@@ -12,10 +12,10 @@ export default function Footer() {
             Thoughts that stay with you.
           </p>
         </div>
-
         <div className="footer-links">
           <h4>Explore</h4>
           <Link to="/">Home</Link>
+          <Link to="/vendor-login">Vendor Login</Link>
           <Link to="/blogs">Blogs</Link>
           <Link to="/about">About</Link>
         </div>

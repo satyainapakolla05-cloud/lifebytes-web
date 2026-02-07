@@ -6,8 +6,14 @@ import { Languages, ChevronDown, Home } from 'lucide-react';
 const Navbar = ({ onLanguageChange }) => {
    const [isOpen, setIsOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState('తెలుగు');
- 
+ const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+ const [cartCount, setCartCount] = React.useState(0);
 
+ React.useEffect(() => { 
+   const updateCount = () => { const cart = JSON.parse(localStorage.getItem('cart')) || []; setCartCount(cart.length); };
+   window.addEventListener("cartUpdated", updateCount);
+   return () => window.removeEventListener("cartUpdated", updateCount); }, []);
+ 
   const handleLangChange = (lang) => {
     setSelectedLang(lang);
     onLanguageChange(lang); // Parent component కి సమాచారం పంపుతుంది
@@ -24,19 +30,7 @@ const Navbar = ({ onLanguageChange }) => {
         Life<span className="text-gray-900">Bites</span>
       </Link>
       {/* వెండర్ లాగిన్ బటన్ (కొత్తది) */}
-  <Link 
-    to="/vendor-login" 
-    className="text-green-600 border border-green-600 px-4 py-2 rounded-md font-medium hover:bg-green-50 transition"
-  >
-    Vendor Login
-  </Link>
-{/* వెండర్ రిజిస్ట్రేషన్ లింక్ ఇక్కడ యాడ్ చేయండి */}
-  <Link 
-    to="/vendor-register" 
-    className="bg-green-600 text-white px-4 py-2 rounded-md font-medium hover:bg-green-700 transition"
-  >
-    Become a Vendor
-  </Link>
+
       {/* Right Side Options */}
       <div className="flex items-center space-x-4 md:space-x-8">
         
@@ -48,6 +42,7 @@ const Navbar = ({ onLanguageChange }) => {
           <Home size={20} />
           <span className="hidden md:inline">Home</span>
         </Link>
+      <div className="relative p-2"> <span className="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-1.5 rounded-full"> {cartCount} </span> {/* Nee Cart Icon ikkada pettu */} <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path> </svg> </div>
         {/* Language Dropdown */}
         <div className="relative">
           <button 
